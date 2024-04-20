@@ -1,0 +1,6 @@
+# Exclure absolument tous les fichiers/dossiers
+/**/*
+
+# Parmi les fichiers/dossiers exclus, autoriser les suivants:
+!/.gitignore
+!/README.md
