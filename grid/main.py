@@ -8,8 +8,6 @@ import geopandas as gpd
 
 # Chemin du module
 path = Path(__file__).parent
-print(path)
-print(path / 'PFE.gpkg')
 
 # Produire le dictionnaire de points
 points = make_grid(blocs=liste, data=data)

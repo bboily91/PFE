@@ -1,5 +1,5 @@
 """
-Cree une liste des 4 points formant les UE.
+Cree une liste des 4 chaines de caracteres representant les 4 points formant les UE.
 
 Objets:
     - "liste" ex: (list) [['B18_E', 'B18_N', 'B18_O', 'B18_S'], ...]
@@ -12,9 +12,9 @@ import geopandas as gpd
 
 
 # Raw points
-data = gpd.read_file(r'/home/bender/code/autogis/_data/Points_UE_Duchesnay.zip')[['ID_PE', 'geometry']]
+data = gpd.read_file(r'/home/bender/code/autogis/PFE/Points_UE_Duchesnay/Points_UE_Duchesnay.shp')[['ID_PE', 'geometry']]
 
-# 
+# CRS
 crs = data.crs
 
 # Create sorted liste of each point of each UE.
@@ -22,7 +22,7 @@ crs = data.crs
 # ============================================
 liste = []
 
-for i in range(1, 20):
+for i in range(1, 21):
     y = []
     for j in data['ID_PE']:
         x = j.lstrip('B').split('_')
