@@ -11,7 +11,7 @@ def finder(dic, bloc, j):
     Args:
       - dic: Objet 'data' sous forme de dictionnaire
       - bloc: Sous liste de blocs. Ex: ['B1_E', 'B1_N', 'B1_O', 'B1_S']
-      - j: Indice
+      - j: Indice de for loop
 
     Return: <shapely.Point>
     """
@@ -23,24 +23,38 @@ def finder(dic, bloc, j):
 
 def make_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
     """
-    Genere une grille de points tous les 10m orientes dans le sens de l'unite experimentale
+    Genere une grille de points seprares d'environ 10m orientes dans le sens de l'unite 
+    experimentale.
+
+    Les deux premiers axes de reference sont Est-Sud (axe 1) et Nord-Ouest (axe 2). Chacun des 
+    axes est divise en 7 parts egales et un Point est cree localement a chaque jalon. Donc, 6 
+    points sont crees. Un processus iteratif prend chaque pair de points correspondant des axes
+    1 et 2 pour diviser cette distance en 7 parts egales et cree un Point a chaque jalon. Cette 
+    creation de Point se fait de facon transversale aux axes de references. Ce sont ces points 
+    crees transversalement qui sont retournes par la fonction.
 
     Args:
-      - blocs (list) ex: [['B18_E', 'B18_N', 'B18_O', 'B18_S'], ...]
-      - data (geopandas.GeoDataFrame)
+        - blocs (list) ex: [['B18_E', 'B18_N', 'B18_O', 'B18_S'], ...]
+        - data (geopandas.GeoDataFrame)
 
-    Return: (dict) ex:{'col1': ['point_1', ...], 'geometry': [POINT (296364.056 5201126.639), ...]}
+    Return: 
+        - (dict) ex:{
+                        'col1': ['point_1_1', 'point_1_2', ...],
+                        'bloc_id': ['B1', 'B1', ...]
+                        'geometry': [POINT (296364.056 5201126.639), ...]
+                    }
     """
 
     # Initialise un dictionnaire pour accumuler les instances de shapely.Point
     # pour generer un GeoDataFrame
     points = {
-        'col1': [],
+        'point_id': [],
+        'bloc_id': [],
         'geometry': []
     }
 
 
-    # Pour chaque liste dans la liste 'blocs'
+    # Pour chaque liste (bloc) de la liste 'blocs'
     for bloc in blocs:
 
         if len(bloc) > 1:
@@ -57,6 +71,8 @@ def make_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
             nord = finder(dic=x, bloc=bloc, j=1)
             ouest = finder(dic=x, bloc=bloc, j=2)
             sud = finder(dic=x, bloc=bloc, j=3)
+
+            bloc_id = (bloc[0].split('_'))[0]
 
             print()
 
@@ -77,7 +93,6 @@ def make_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
                 point1 = Point((x1, y1))
                 point2 = Point((x2, y2))
 
-                # iter sur points Est vers Nord
                 for j in range(1, 7):
                     delta_x = point2.x - point1.x
                     delta_y = point2.y - point1.y
@@ -85,7 +100,9 @@ def make_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
                     x = ((delta_x)/7)*j + point1.x
                     y = ((delta_y)/7)*j + point1.y
 
-                    points['col1'].append(f'point_{i}_{j}')
+                    points['point_id'].append(f'point_{i}_{j}')
+
+                    points['bloc_id'].append(f'{bloc_id}')
 
                     points['geometry'].append(Point((x, y)))
 

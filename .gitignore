@@ -1,7 +1,7 @@
 # Exclure absolument tous les fichiers/dossiers
 /*
 /grid/__pycache__
-/grid/PFE.gpkg
+/grid/PFE*
 
 # Parmi les fichiers/dossiers exclus, autoriser les suivants:
 !/.gitignore
