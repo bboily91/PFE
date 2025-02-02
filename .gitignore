@@ -1,0 +1,6 @@
+# Exclure absolument tous les fichiers/dossiers
+LiDAR_TER/donneesLiDAR.csv
+/grid/__pycache__
+grid/PFE.gpkg
+grid/gif.py
+Points_UE_Duchesnay/
