@@ -6,8 +6,8 @@ Chaque point représente un centre de microplacette de régénération.
 
 ## Méthode équidistance
 
-<img aling="center" src="https://raw.githubusercontent.com/PFE/grid/equi_grid.gif" />
+<img aling="center" src="https://raw.githubusercontent.com/bboily91/PFE/main/grid/ima/equi_grid.gif" width="400"/>
 
 ## Méthode moyenne
 
-<img aling="center" src="https://raw.githubusercontent.com/PFE/grid/mean_grid.gif" />
+<img aling="center" src="https://raw.githubusercontent.com/bboily91/PFE/main/grid/ima/mean_grid.gif" width="400"/>
