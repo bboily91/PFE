@@ -2,5 +2,6 @@
 LiDAR_TER/donneesLiDAR.csv
 /grid/__pycache__
 grid/PFE.gpkg
+grid/poly.gpkg
 grid/gif.py
 Points_UE_Duchesnay/
