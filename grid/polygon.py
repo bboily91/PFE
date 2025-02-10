@@ -35,7 +35,7 @@ def make_poly(bloc: list, data: gpd.GeoDataFrame, container: dict) -> dict:
 
 	poly = Polygon(((p1.x, p1.y), (p2.x, p2.y), (p3.x, p3.y), (p4.x, p4.y), (p5.x, p5.y)))
 
-	container['UE_ID'].append(f'Bloc_{UE}')
+	container['UE_ID'].append(f'UE_{UE}')
 	container['geometry'].append(poly)
 
 	return container
@@ -55,11 +55,10 @@ for bloc in liste:
 blocs = gpd.GeoDataFrame(polygon, crs=crs)
 
 # Exporter le geodataframe en GPKG
-path = Path(__file__).parent
+path = Path(__file__).parent.parent
 
-if not (path / 'poly.gpkg').exists():
-	print(f'Writting "{path}/poly.gpkg"')
-	blocs.to_file(path / 'poly.gpkg', driver='GPKG', layer='poly')
+print(f'Writting "{path}/PFE.gpkg"')
+blocs.to_file(path / 'PFE.gpkg', driver='GPKG', layer='poly')
 
 # Plot les nouveaux polygones
 ax = blocs.plot(cmap='magma')

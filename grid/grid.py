@@ -114,6 +114,12 @@ def make_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
 
 ###################################################################################################
 
+
+# Fonction locale, génère le point moyen pour chaque groupe de 4 points
+def generate_mean():
+    pass
+
+
 def mean_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
     """
     Args:
