@@ -35,7 +35,18 @@ def make_poly(bloc: list, data: gpd.GeoDataFrame, container: dict) -> dict:
 
 	poly = Polygon(((p1.x, p1.y), (p2.x, p2.y), (p3.x, p3.y), (p4.x, p4.y), (p5.x, p5.y)))
 
+	# Calcul des champs
 	container['UE_ID'].append(f'UE_{UE}')
+	if int(UE) in {1, 7, 13, 20}:
+		container['Traitement'].append('Temoin')
+	elif int(UE) in {4, 6, 15, 16}:
+		container['Traitement'].append('SC18')
+	elif int(UE) in {3, 8, 14, 17}:
+		container['Traitement'].append('CCIS16')
+	elif int(UE) in {2, 10, 11, 18}:
+		container['Traitement'].append('CCIS14')
+	elif int(UE) in {5, 9, 12, 19}:
+		container['Traitement'].append('EIS14')
 	container['geometry'].append(poly)
 
 	return container
@@ -44,6 +55,7 @@ def make_poly(bloc: list, data: gpd.GeoDataFrame, container: dict) -> dict:
 # Dictionnaire vide
 polygon = {
 	'UE_ID': [],
+	'Traitement': [],
 	'geometry': []
 }
 

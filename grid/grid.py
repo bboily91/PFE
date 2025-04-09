@@ -209,7 +209,7 @@ def mean_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
                     x = (delta_y/norme)*j*10 + point.x
                     y = (delta_x/norme)*j*(-10) + point.y
 
-                    points['point_id'].append(f'point_{j}_{7-i}')
+                    points['point_id'].append(f'point_{7-j}_{i}')
 
                     points['bloc_id'].append(f'{bloc_id}')
 
@@ -236,7 +236,7 @@ def mean_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
                     x = (delta_y/norme)*j*10 + point.x
                     y = (delta_x/norme)*j*(-10) + point.y
 
-                    points['point_id'].append(f'point_{j}_{i}')
+                    points['point_id'].append(f'point_{7-i}_{7-j}')
 
                     points['bloc_id'].append(f'{bloc_id}')
 
@@ -263,7 +263,7 @@ def mean_grid(blocs: list, data: gpd.GeoDataFrame) -> dict:
                     x = (delta_y/norme)*j*10 + point.x
                     y = (delta_x/norme)*j*(-10) + point.y
 
-                    points['point_id'].append(f'point_{i}_{7-j}')
+                    points['point_id'].append(f'point_{j}_{7-i}')
 
                     points['bloc_id'].append(f'{bloc_id}')
 
